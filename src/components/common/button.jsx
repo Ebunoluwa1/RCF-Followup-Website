@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Button Component with support for variants (size, color, etc.)
 export const Button = ({
@@ -35,8 +36,8 @@ export const ButtonLinks = ({
   ...props
 }) => {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className={` 
         ${classes.base} 
         ${classes.color[color]} 
@@ -46,7 +47,7 @@ export const ButtonLinks = ({
       {...props}
     >
       {children}
-    </a>
+    </Link>
   );
 };
 

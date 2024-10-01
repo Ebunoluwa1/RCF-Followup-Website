@@ -1,9 +1,13 @@
 import React from 'react'
+import { Footer, Hero, ShareTestimonies, ShareYourFaith } from '../components/landing'
 
 const LandingPage = () => {
   return (
     <div>
-      LandingPage
+      <Hero/>
+      <ShareYourFaith/>
+      <ShareTestimonies/>
+      <Footer/>
     </div>
   )
 }

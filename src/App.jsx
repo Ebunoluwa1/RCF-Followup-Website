@@ -1,21 +1,23 @@
 import { Routes, Route } from 'react-router-dom';
-import { FollowUpLanding, LandingPage, LogIn, ResetPassword, SignUp, UserDetails } from './pages';
-import NotFound from './components/common/not-found';
+import { LandingPage, LogIn, ResetPassword, SignUp, UserDetails } from './pages';
+import { Navbar, NotFound } from './components/common';
 
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<LandingPage/>}/>
-      <Route path='/log-in' element={<LogIn/>}/>
-      <Route path='/sign-up' element={<SignUp/>}/>
-      <Route path='/reset-your-password' element={<ResetPassword/>}/>
-      <Route path='/profile' element={<UserDetails/>}/>
-      <Route path='/follow-up' element={<FollowUpLanding/>}/>
+    <div>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<LandingPage/>}/>
+        <Route path='/log-in' element={<LogIn/>}/>
+        <Route path='/sign-up' element={<SignUp/>}/>
+        <Route path='/reset-your-password' element={<ResetPassword/>}/>
+        <Route path='/profile' element={<UserDetails/>}/>
 
-      {/* Catch-all route for unknown paths */}
-      <Route path="*" element={<NotFound/>} />
-    </Routes>
+        {/* Catch-all route for unknown paths */}
+        <Route path="*" element={<NotFound/>} />
+      </Routes>
+    </div>
   );
 }
 
