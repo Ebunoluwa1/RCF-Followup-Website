@@ -1,5 +1,5 @@
-import { studyTogether } from "../../assets"
-import { Button, ButtonLinks } from "../common"
+import { studyTogether } from "../../assets";
+import { Button, ButtonLinks } from "../common";
 
 export default function ShareYourFaith() {
   return (
@@ -13,13 +13,16 @@ export default function ShareYourFaith() {
       <div className="flex max-w-6xl mx-auto flex-col justify-between  md:flex-row items-center gap-8">
         <div className="md:w-1/2 space-y-4">
           <p className="text-gray-600 text-sm sm:text-lg font-medium max-w-[420px]">
-            Ready to embark on a life-changing journey? Join our New Convert Course and discover the joy of faith. Learn from experienced believers, connect with a supportive community, and gain a deeper understanding of God's Word. Don't miss this opportunity to grow stronger in your faith. Enroll now!
+            Ready to embark on a life-changing journey? Join our New Convert
+            Course and discover the joy of faith. Learn from experienced
+            believers, connect with a supportive community, and gain a deeper
+            understanding of God's Word. Don't miss this opportunity to grow
+            stronger in your faith. Enroll now!
           </p>
 
           <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded py-1 px-7 sm:py-1.5 sm:px-9">
-
             Enroll Now
-          </ButtonLinks>
+          </Button>
         </div>
         <div className="md:w-1/2 max-h-[320px] md:max-h-[400px] max-w-[500px] overflow-hidden rounded-lg">
           <img
@@ -30,5 +33,5 @@ export default function ShareYourFaith() {
         </div>
       </div>
     </section>
-  )
+  );
 }
