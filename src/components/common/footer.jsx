@@ -1,11 +1,11 @@
-import { Button } from "../common"
+import { Button } from ".";
 
 export default function Footer() {
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     // TODO: Implement newsletter subscription logic
-    console.log("Newsletter subscription submitted")
-  }
+    console.log("Newsletter subscription submitted");
+  };
 
   return (
     <footer className="bg-black text-white py-12">
@@ -27,5 +27,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

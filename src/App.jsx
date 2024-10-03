@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { LandingPage, LogIn, ResetPassword, SignUp, UserDetails } from './pages';
-import { Navbar, NotFound } from './components/common';
+import { Footer, Navbar, NotFound } from './components/common';
+import CoursesPage from './pages/courses';
 
 
 function App() {
@@ -13,10 +14,12 @@ function App() {
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/reset-your-password' element={<ResetPassword/>}/>
         <Route path='/profile' element={<UserDetails/>}/>
+        <Route path='/courses' element={<CoursesPage/>}/>
 
         {/* Catch-all route for unknown paths */}
         <Route path="*" element={<NotFound/>} />
       </Routes>
+      <Footer/>
     </div>
   );
 }
