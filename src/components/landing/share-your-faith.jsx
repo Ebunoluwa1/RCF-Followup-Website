@@ -15,7 +15,7 @@ export default function ShareYourFaith() {
           <p className="text-gray-600 text-sm sm:text-lg font-medium max-w-[420px]">
             Ready to embark on a life-changing journey? Join our New Convert Course and discover the joy of faith. Learn from experienced believers, connect with a supportive community, and gain a deeper understanding of God's Word. Don't miss this opportunity to grow stronger in your faith. Enroll now!
           </p>
-          <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded py-1.5 px-9" size="sm">
+          <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded py-1.5 px-9" size="md">
             Enroll Now
           </Button>
         </div>

@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <nav className="">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
@@ -66,7 +66,7 @@ export default function Navbar() {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`px-3 py-2 rounded-md text-sm block opacity-65 hover:opacity-100 ${
+                    className={`px-3 py-2 rounded-md text-sm md:text-[16px] lg:text-lg block opacity-65 hover:opacity-100 ${
                       pathname === item.href && "opacity-100"
                     } `}
                   >
@@ -74,7 +74,7 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-              <ButtonLinks href="/log-in" size="sm">Sign In</ButtonLinks>
+              <ButtonLinks href="/log-in" size="md" className="px-8">Sign In</ButtonLinks>
             </>
           )}
         </div>
