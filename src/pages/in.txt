@@ -1,0 +1,33 @@
+
+
+// import { GoogleLogin } from "@react-oauth/google";
+
+// const CLIENT_ID = "YOUR_CLIENT_ID.apps.googleusercontent.com";
+
+// const GoogleSignIn = () => {
+//   const onSuccess = (response) => {
+//     console.log("Login successful!", response);
+//     const profile = response.getBasicProfile();
+//     console.log("Name:", profile.getName());
+//     console.log("Email:", profile.getEmail());
+    // Send token or profile details to your backend for authentication or session management
+//   };
+
+//   const onFailure = (response) => {
+//     console.log("Login failed", response);
+//   };
+
+//   return (
+//     <div>
+//       <GoogleLogin
+//         clientId={CLIENT_ID}
+//         // buttonText="Sign in with Google"
+//         onSuccess={onSuccess}
+//         onFailure={onFailure}
+//         cookiePolicy={"single_host_origin"}
+//       />
+//     </div>
+//   );
+// };
+
+// export default GoogleSignIn;
