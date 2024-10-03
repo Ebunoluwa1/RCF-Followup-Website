@@ -31,7 +31,7 @@ export default function NewConvertCourses() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 pt-16 pb-20">
+    <div className="max-w-7xl mx-auto px-4 pt-5 md:pt-16 pb-20">
       <h2 className="text-3xl md:text-4xl font-medium text-purple-800 tracking-wider mb-12 text-center">New Convert Courses</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
         {courses.map((course, index) => (

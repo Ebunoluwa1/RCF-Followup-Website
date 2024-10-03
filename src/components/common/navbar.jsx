@@ -18,7 +18,7 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const pathname = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -68,7 +68,7 @@ export default function Navbar() {
                     to={item.href}
                     className={`px-3 py-2 rounded-md text-sm md:text-[16px] lg:text-lg block opacity-65 hover:opacity-100 ${
                       pathname === item.href && "opacity-100"
-                    } `}
+                    }`}
                   >
                     {item.name}
                   </Link>
@@ -82,11 +82,12 @@ export default function Navbar() {
 
       {isMobile && isOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="absolute bg-white w-full top-20 px-2 pt-2 pb-5 space-y-1 sm:px-3 shadow-lg z-50">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={() => setIsOpen(!isOpen)}
                 className={`block px-3 py-2 opacity-65 hover:opacity-100 rounded-md text-base ${
                   pathname === item.href && "opacity-100"
                 }`}
