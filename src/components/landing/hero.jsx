@@ -32,7 +32,7 @@ export default function Hero() {
           />
         </div>
       </div>
-      <div className="grid grid-rows-3 grid-flow-col gap-4 comic-neue-regular text-center">
+      <div className="grid grid-rows-2 sm:grid-rows-3 grid-flow-col gap-4 comic-neue-regular text-center">
         <div className="bg-purple-200 p-4 rounded-2xl shadow col-span-2 relative row-span-3">
           <div className="w-full flex items-center justify-center">
             <img
@@ -58,7 +58,7 @@ export default function Hero() {
               className="relative w-[70px] mb-2 translate-x-1/3"
             />
           </div>
-          <p className="text-xs sm:text-lg md:text-xl">
+          <p className="text-sm sm:text-lg md:text-xl">
             You are now part of a loving and supportive community. We are here
             to walk alongside you as you grow in your faith. May the Lord bless
             and keep you.

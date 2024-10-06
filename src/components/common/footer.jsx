@@ -8,8 +8,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-white py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-black text-white px-4 sm:px-6 lg:px-8 py-12">
+      <div className="container mx-auto">
         <div className="max-w-md mx-auto text-center">
           <h2 className="text-2xl font-bold mb-2">Stay connected to us</h2>
           <p className="text-gray-400 mb-6">Subscribe to our newsletter</p>
