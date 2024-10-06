@@ -61,7 +61,7 @@ export default function Navbar() {
             </div>
           ) : (
             <>
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="ml-10 flex items-baseline text-sm lg:text-lg lg:space-x-4">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -74,7 +74,7 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-              <ButtonLinks href="/log-in" size="md" className="px-8">Sign In</ButtonLinks>
+              <ButtonLinks href="/log-in" size="md" className="px-5 lg:px-8">Sign In</ButtonLinks>
             </>
           )}
         </div>
