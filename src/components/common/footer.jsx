@@ -20,7 +20,7 @@ export default function Footer() {
               className="flex-grow bg-white text-black rounded-md px-4 py-2.5"
               required
             />
-            <Button type="submit" className="bg-purple-600 w-full sm:w-auto hover:bg-purple-700">
+            <Button type="submit" className="w-full sm:w-auto bg-purple-600 hover:bg-purple-700">
               Submit
             </Button>
           </form>

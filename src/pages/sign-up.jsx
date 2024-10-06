@@ -1,128 +1,128 @@
-import {useState, useEffect} from 'react'
-import { Link , useLocation, useNavigate} from 'react-router-dom'
-import { rcfLogo } from '../assets'
-import TextComponent from '../components/common/text';
-import { ButtonLinks } from '../components/common';
-import {  InputComponent, PasswordInput } from '../components/common/input';
-import GoogleSignIn from './google';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { rcfLogo } from "../assets";
+import TextComponent from "../components/common/text";
+import { ButtonLinks } from "../components/common";
+import { InputComponent, PasswordInput } from "../components/common/input";
+import GoogleSignIn from "./google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const SignUp = () => {
- const [nav, setNav] = useState('signIn');
- const navigate = useNavigate ();
- const location= useLocation();
+  const [nav, setNav] = useState("signIn");
+  const navigate = useNavigate();
+  const location = useLocation();
 
- useEffect (() => {
- if(location.pathname === '/sign-up'){
-  setNav('signUp');
- } else if(location.pathname ==='/log-in'){setNav('signIn')}
-},[location]
-)
+  useEffect(() => {
+    if (location.pathname === "/sign-up") {
+      setNav("signUp");
+    } else if (location.pathname === "/log-in") {
+      setNav("signIn");
+    }
+  }, [location]);
 
- const handleSignIn =()=>{
-  setNav('signIn')
-  navigate('/log-in')
- }
+  const handleSignIn = () => {
+    setNav("signIn");
+    navigate("/log-in");
+  };
 
-  const handleSignUp=()=>{
-  setNav('signUp')
-  navigate('/sign-up')
- }
+  const handleSignUp = () => {
+    setNav("signUp");
+    navigate("/sign-up");
+  };
+
   return (
-    <div className=''>
-        <div className='flex flex-col items-center justify-center '>
-            <div className="flex items-center my-4">
-              <Link to="/" className="flex-shrink-0">
-                <img src={rcfLogo} alt="RCF logo" width={40} height={40} />
-              </Link>
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md mx-auto">
+        <div className="flex flex-col items-center justify-center">
+          <Link to="/" className="flex-shrink-0 mb-6">
+            <img src={rcfLogo} alt="RCF logo" className="w-12 h-12" />
+          </Link>
+          
+          <div className="w-full mb-6">
+            <div className="flex justify-center border-b border-gray-200">
+              <button
+                onClick={handleSignIn}
+                className={`px-4 py-2 text-sm font-medium ${
+                  nav === "signIn"
+                    ? "text-purple-600 border-b-2 border-purple-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Sign in
+              </button>
+              <button
+                onClick={handleSignUp}
+                className={`px-4 py-2 text-sm font-medium ${
+                  nav === "signUp"
+                    ? "text-purple-600 border-b-2 border-purple-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Sign up
+              </button>
             </div>
-            <div>
-              {/* handling the nav signin and signup */}
-              <div className='flex flex-shrink-0 items-center '>
-                 <p onClick={handleSignIn} 
-                className={`sm:text-sm px-3 py-2  block opacity-100  ${nav === 'signIn' && 'border-b-2 text-[#9741AC] opacity-100 outline-[#9741AC]-2 border-[#9741AC]'} `}>Sign in</p>
+          </div>
 
-                  <p onClick={handleSignUp}   className={`sm:text-sm px-3 py-2  block cursor-pointer opacity-100  ${nav === 'signUp' && 'border-b-2 text-[#9741AC] opacity-100 outline-[#9741AC]-2 border-[#9741AC]' } `}>Sign up</p>
-              </div>
-
-            </div>
-
-            {/* using Google */}
-              {nav === 'signUp'|| handleSignUp ?
-            (
-              <div className='mt-4'>
-                <TextComponent 
-               
-                className='mb-4 text-sm'
-                text='Create a new account using :'
-                />
-              <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
-                  <GoogleSignIn />
-              </GoogleOAuthProvider>
-              </div>
-            ) : (
-              <div className='mt-4'>
-                <TextComponent 
-                className='mb-4 text-sm'
-                text='Sign in to your account using :'
-                />
-              <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
+          <div className="w-full mb-6 flex flex-col items-center justify-center">
+            <TextComponent
+              className="mb-4 text-sm text-center"
+              text={`${
+                nav === "signUp" ? "Create a new account" : "Sign in to your account"
+              } using:`}
+            />
+            <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
               <GoogleSignIn />
-              </GoogleOAuthProvider>
-              </div>
-            )}
-           
-            {/* form */}
-            <div className=' flex flex-col
-            justify-center'>
-                <div className='pt-8 pb-4 px-8 '>
-                  <InputComponent 
-                  label='Email'
-                  labelClassName={`text-[#757575] mb-4 px-3 block`}
-                  placeholder='email@gmail.com'
-                
-                  />
-                </div>
+            </GoogleOAuthProvider>
+          </div>
 
-                <div className=' mb-4'>
-                  <PasswordInput
-                  label='Password'
-                  labelClassName={`text-[#757575] mb-4 px-3 block`}
-                  placeholder='*******'
-              
-                  />
-                </div>
+          <form className="w-full space-y-6">
+            <InputComponent
+              label="Email"
+              labelClassName="text-sm font-medium text-gray-700"
+              placeholder="email@gmail.com"
+              type="email"
+            />
 
-                  <div className=' mb-4'>
-                  <PasswordInput
-                  label=' Confirm Password'
-                  labelClassName={`text-[#757575] mb-4 px-3 block`}
-                  placeholder='*******'
-              
-                  />
-                </div>
+            <PasswordInput
+              label="Password"
+              labelClassName="text-sm font-medium text-gray-700"
+              placeholder="*******"
+            />
 
-                 
-               <div className='w-full px-8 flex justify-center'>
-                 <ButtonLinks to='' size="md" color='primary' className='w-96' >
-                  Sign up
-                </ButtonLinks>
-               </div>
-                 
-                  <div>
-                    <div className='flex items-center justify-center space-x-1 px-8 '>
-                      <TextComponent 
-                       
-                        text="Already have an account?"
-                        className='text-center mt-4 text-xs text-black'
-                      />
-                      <Link to='/log-in' className='text-[#953FAA] hover:active:text-purple-800 items-end  text-sm mt-4 cursor-pointer'> Sign in</Link>
-                    </div>
-                  </div>
+            <PasswordInput
+              label="Confirm Password"
+              labelClassName="text-sm font-medium text-gray-700"
+              placeholder="*******"
+            />
+
+            <div className="pt-2">
+              <ButtonLinks
+                to=""
+                size="md"
+                color="primary"
+                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+              >
+                Sign up
+              </ButtonLinks>
             </div>
-        </div>
-    </div>
-  )
-}
+          </form>
 
-export default SignUp
+          <div className="mt-6 text-center">
+            <TextComponent
+              text="Already have an account?"
+              className="text-sm text-gray-600 inline mr-1"
+            />
+            <Link
+              to="/log-in"
+              className="text-purple-600 hover:text-purple-800 text-sm font-medium"
+            >
+              Sign in
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SignUp;
