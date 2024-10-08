@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { LandingPage, LogIn, ResetPassword, SignUp, UserDetails } from './pages';
+import { LandingPage, LogIn, ResetPassword, Resources, SignUp, UserDashboard, UserDetails } from './pages';
 import { Footer, Navbar, NotFound } from './components/common';
 import CoursesPage from './pages/courses';
 
@@ -15,6 +15,8 @@ function App() {
         <Route path='/reset-your-password' element={<ResetPassword/>}/>
         <Route path='/profile' element={<UserDetails/>}/>
         <Route path='/courses' element={<CoursesPage/>}/>
+        <Route path='/resources' element={<Resources/>}/>
+        <Route path='/dashboard' element={<UserDashboard/>}/>
 
         {/* Catch-all route for unknown paths */}
         <Route path="*" element={<NotFound/>} />
