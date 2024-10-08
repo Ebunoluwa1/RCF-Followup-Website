@@ -27,7 +27,7 @@ export default function Testimonies() {
   ];
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
       <div className="flex items-center justify-center">
         <h2 className="text-3xl text-font-bold md:text-center mb-3 relative ">
           Testimonials
