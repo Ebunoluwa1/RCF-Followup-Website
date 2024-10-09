@@ -5,6 +5,8 @@ import CoursesPage from './pages/courses';
 import AttendancePage from './pages/attendance';
 import CourseDetail from './components/courses/courseDetail';
 import TakeTest from './components/courses/take-test';
+import TestResult from './components/courses/test-result';
+import ResultCorrections from './components/courses/result-corrections';
 
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
         <Route path='/courses' element={<CoursesPage/>}/>
         <Route path='/attendance' element={<AttendancePage/>}/>
         <Route path='/take-course' element={<CourseDetail/>}/>
-          <Route path='/take-test' element={<TakeTest />}/>
+        <Route path='/take-test' element={<TakeTest />}/>
+        <Route path='/test-result' element={<TestResult/>}/>
+        <Route path='/result-corrections' element={<ResultCorrections />}/>
         <Route path='/resources' element={<Resources/>}/>
         <Route path='/dashboard' element={<UserDashboard/>}/>
 
