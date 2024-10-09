@@ -5,3 +5,5 @@ export { default as LogIn } from './log-in';
 export { default as SignUp } from './sign-up';
 export { default as ResetPassword } from './reset-password';
 export { default as UserDetails } from './user-details';
+export { default as Resources } from './resources';
+export { default as UserDashboard } from './user-dashboard';
