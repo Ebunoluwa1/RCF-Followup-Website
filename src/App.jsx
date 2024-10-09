@@ -17,9 +17,9 @@ function App() {
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/reset-your-password' element={<ResetPassword/>}/>
         <Route path='/profile' element={<UserDetails/>}/>
-        <Route path='/courses' element={<CoursesPage/>}
+        <Route path='/courses' element={<CoursesPage/>}/>
         <Route path='/attendance' element={<AttendancePage/>}/>
-         <Route path='/take-course' element={<CourseDetail/>}/>
+        <Route path='/take-course' element={<CourseDetail/>}/>
           <Route path='/take-test' element={<TakeTest />}/>
         <Route path='/resources' element={<Resources/>}/>
         <Route path='/dashboard' element={<UserDashboard/>}/>
