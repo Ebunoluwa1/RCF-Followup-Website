@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
   
    export const category = [
     { value: 'Follow up', name: 'Follow up' },
@@ -37,3 +38,14 @@
     { value: 'Outside hostel', name: 'Outside hostel' },
 ];
 
+export const courses = [
+    { title: "Understanding Salvation", lessonNumber: 1 },
+    { title: "Faith in Christ", lessonNumber: 2 },
+    { title: "The power of Prayer", lessonNumber: 3 },
+    { title: "Living a Christ-centered life", lessonNumber: 4 },
+    { title: "The role of the Holy Spirit", lessonNumber: 5 },
+    { title: "Understanding the bible", lessonNumber: 6 },
+    { title: "The importance of fellowship", lessonNumber: 7 },
+    { title: "Sharing your Faith", lessonNumber: 8 },
+    { title: "Understanding Salvation", lessonNumber: 9 },
+  ];
