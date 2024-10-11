@@ -53,7 +53,7 @@ export const ButtonLinks = ({
 
 // Shared CSS classes
 const classes = {
-  base: "inline-block rounded-md font-semibold text-center",  // Base styles for all buttons
+  base: "inline-block rounded-md font-semibold text-center ",  // Base styles for all buttons
   color: {
     primary: 'bg-[#953FAA] hover:bg-[#8D2DA5] text-white ',
     rose: "bg-purple-600 hover:bg-purple-700 text-white",      // Rose color variant

@@ -3,6 +3,8 @@
 import React from "react";
 
 const TextComponent = ({
+  onClick,
+  to,
   text,
   title,
   caption,
@@ -14,7 +16,8 @@ const TextComponent = ({
 }) => {
   return (
     <div>
-      <p
+      <p to={to}
+      onClick={onClick}
         className={`
             ${className && className}
             ${bold && " m-2 text-xl font-semibold"}

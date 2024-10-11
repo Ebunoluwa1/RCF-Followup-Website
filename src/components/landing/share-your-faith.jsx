@@ -18,7 +18,11 @@ export default function ShareYourFaith() {
             believers, connect with a supportive community, and gain a deeper
             understanding of God's Word. Don't miss this opportunity to grow
             stronger in your faith. Enroll now!
-          </p>
+
+
+
+
+         </p>
 
           <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded hidden sm:block py-1 px-7 sm:py-1.5 sm:px-9">
             Enroll Now
