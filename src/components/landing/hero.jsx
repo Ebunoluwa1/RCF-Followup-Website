@@ -3,10 +3,10 @@ import { firstTimer, newConvert, pin } from "../../assets";
 export default function Hero() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white py-11">
-      <h1 className="text-4xl font-light text-center mb-12">
+      <h1 className="text-3xl sm:text-4xl font-light text-left sm:text-center mb-12">
         <span className="text-purple-800">Welcome</span> to RCF UNILAG
         <br />
-        <span className="text-purple-800">follow up</span>
+        <span className="text-purple-800">follow up</span> page
       </h1>
       <div className="grid grid-cols-2 gap-8 sm:gap-11 md:gap-16 comic-neue-regular">
         <div className="bg-blue-100 p-4 rounded-2xl shadow relative pb-12 sm:pb-16 mb-4">
