@@ -3,7 +3,7 @@ import { Button, ButtonLinks } from "../common";
 
 export default function ShareYourFaith() {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 bg-[#FBF1FE] sm:bg-transparent">
       <div className="flex items-center justify-center">
         <h2 className="text-3xl text-font-bold md:text-center mb-8 relative ">
           Start Your Faith Journey
@@ -20,7 +20,7 @@ export default function ShareYourFaith() {
             stronger in your faith. Enroll now!
           </p>
 
-          <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded py-1 px-7 sm:py-1.5 sm:px-9">
+          <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded hidden sm:block py-1 px-7 sm:py-1.5 sm:px-9">
             Enroll Now
           </Button>
         </div>
@@ -30,6 +30,11 @@ export default function ShareYourFaith() {
             alt="People studying together"
             className="rounded-lg shadow-md object-cover -mt-24"
           />
+        </div>
+        <div className="flex items-center justify-center">
+          <Button className="bg-purple-600 hover:bg-purple-700 text-white font-bold rounded sm:hidden block py-1 px-7 sm:py-1.5 sm:px-9" size="sm">
+            Enroll Now
+          </Button>
         </div>
       </div>
     </section>
