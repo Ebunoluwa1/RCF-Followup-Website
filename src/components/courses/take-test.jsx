@@ -6,7 +6,7 @@ import { Button} from '../common';
 import { Link } from 'react-router-dom';
 
 const TakeTest = () => {
- const [time, setTime] = useState(300);
+  const [time, setTime] = useState(300);
   const [isActive, setIsActive] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0); 
  
