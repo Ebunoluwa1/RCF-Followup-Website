@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Button, ButtonLinks } from "./button";
 import { rcfLogo } from "../../assets";
 import { useLocation } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -19,6 +20,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { pathname } = useLocation();
+  const { isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -74,7 +76,15 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-              <ButtonLinks href="/log-in" size="md" className="px-5 lg:px-8">Sign In</ButtonLinks>
+              {isAuthenticated ? (
+                <Button size="md" onClick={logout} className="px-5 lg:px-8">
+                  Log out
+                </Button>
+              ) : (
+                <ButtonLinks href="/log-in" size="md" className="px-5 lg:px-8">
+                  Sign In
+                </ButtonLinks>
+              )}
             </>
           )}
         </div>
@@ -95,9 +105,15 @@ export default function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <ButtonLinks href='log-in' size="sm" className="w-full mt-2">
-              Sign In
-            </ButtonLinks>
+            {isAuthenticated ? (
+              <Button size="sm" className="w-full mt-2" onClick={logout}>
+                Log out
+              </Button>
+            ) : (
+              <ButtonLinks href="log-in" size="sm" className="w-full mt-2">
+                Sign In
+              </ButtonLinks>
+            )}
           </div>
         </div>
       )}

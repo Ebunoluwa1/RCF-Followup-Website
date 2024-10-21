@@ -6,11 +6,16 @@ import { ButtonLinks } from "../components/common";
 import { InputComponent, PasswordInput } from "../components/common/input";
 import GoogleSignIn from "./google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { useAuth } from '../context/AuthContext';
 
 const LogIn = () => {
   const [nav, setNav] = useState("signIn");
   const navigate = useNavigate();
   const location = useLocation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { login, loading, error, success } = useAuth(); // destructure the values from the custom useAuth hook
 
   useEffect(() => {
     if (location.pathname === "/sign-up") {
@@ -30,6 +35,21 @@ const LogIn = () => {
     navigate("/sign-up");
   };
 
+  const signIn = (e) => {
+    e.preventDefault();
+    login(email, password)
+      .then(() => {
+        // Redirect to the profile page after a successful login
+        setTimeout(() => {
+          navigate("/profile");
+        }, 2000);
+      })
+      .catch((err) => {
+        // Error handling is done inside the useAuth hook
+        console.error("Login error:", err);
+      });
+  };
+
   return (
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto">
@@ -37,7 +57,7 @@ const LogIn = () => {
           <Link to="/" className="flex-shrink-0 mb-6">
             <img src={rcfLogo} alt="RCF logo" className="w-12 h-12" />
           </Link>
-          
+
           <div className="w-full mb-6">
             <div className="flex justify-center border-b border-gray-200">
               <button
@@ -67,7 +87,9 @@ const LogIn = () => {
             <TextComponent
               className="mb-4 text-sm text-center"
               text={`${
-                nav === "signIn" ? "Sign in to your account" : "Create a new account"
+                nav === "signIn"
+                  ? "Sign in to your account"
+                  : "Create a new account"
               } using:`}
             />
             <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
@@ -75,18 +97,20 @@ const LogIn = () => {
             </GoogleOAuthProvider>
           </div>
 
-          <form className="w-full space-y-6">
+          <form className="w-full space-y-6" onSubmit={signIn}>
             <InputComponent
               label="Email"
               labelClassName="text-sm font-medium text-gray-700"
               placeholder="email@gmail.com"
               type="email"
+              onChange={(e) => setEmail(e.target.value)}
             />
 
             <PasswordInput
               label="Password"
               labelClassName="text-sm font-medium text-gray-700"
               placeholder="*******"
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <div className="flex justify-end">
@@ -103,11 +127,16 @@ const LogIn = () => {
                 to=""
                 size="md"
                 color="primary"
-                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                type="submit"
+                disabled={loading}
+                onClick={signIn}
+                className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 ${loading && "opacity-70"}`}
               >
-                Sign in
+                {loading ? "Signing you in.." : "Sign in"}
               </ButtonLinks>
             </div>
+            {success && <p className="text-green-600">User logged in successfully</p>}
+            {error && <p className="text-red-600">Error logging in: {error}</p>}
           </form>
 
           <div className="mt-6 text-center">
