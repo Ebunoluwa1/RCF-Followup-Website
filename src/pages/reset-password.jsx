@@ -14,6 +14,10 @@ const ResetPassword = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    clearMessages();
+  },[])
+
+  useEffect(() => {
     if (success) {
       // If password update is successful, show a success message and navigate after 2 seconds
       setMessage("Your password has been updated successfully.");
@@ -37,7 +41,6 @@ const ResetPassword = () => {
     resetPassword(currentPassword, newPassword)
       .then(() => {
         // The success handling is managed by useAuth hook
-        clearMessages();
       })
       .catch((err) => {
         console.error("Reset password error:", err);

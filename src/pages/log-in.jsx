@@ -18,6 +18,10 @@ const LogIn = () => {
   const { login, loading, error, success, clearMessages } = useAuth(); // destructure the values from the custom useAuth hook
 
   useEffect(() => {
+    clearMessages();
+  },[]);
+  
+  useEffect(() => {
     if (location.pathname === "/sign-up") {
       setNav("signUp");
     } else if (location.pathname === "/log-in") {

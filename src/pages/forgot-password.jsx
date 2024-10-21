@@ -11,6 +11,10 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    clearMessages();
+  },[])
+
+  useEffect(() => {
     if (success) {
       // If the password reset request is successful, show a success message and navigate after 2 seconds
       setMessage("A password reset email has been sent to your email address.");
@@ -26,7 +30,6 @@ const ForgotPassword = () => {
     forgotPassword(email)
       .then(() => {
         // The success handling is managed by useAuth hook
-        clearMessages();
       })
       .catch((err) => {
         console.error("Forgot password error:", err);

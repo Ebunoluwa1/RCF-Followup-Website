@@ -28,6 +28,10 @@ const UserDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    clearMessages();
+  },[])
+
+  useEffect(() => {
     if (!user || !isAuthenticated) {
       navigate("/log-in");
     } else if (user) {
@@ -46,7 +50,7 @@ const UserDetails = () => {
         birthday: user.birthday || "",
       });
     }
-  }, [user, isAuthenticated, navigate, redirectTimeout]);
+  }, [user, isAuthenticated, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,7 +65,6 @@ const UserDetails = () => {
     updateUserDetails(formData)
       .then(() => {
         setMessage("Your details have been updated successfully.");
-        clearMessages();
       })
       .catch((err) => {
         console.error("Update details error:", err);
