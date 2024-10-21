@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { rcfLogo } from "../assets";
-import { DateInput, InputComponent, SelectInput } from "../components/common/input";
+import {
+  DateInput,
+  InputComponent,
+  SelectInput,
+} from "../components/common/input";
 import { category, hostel, gender, Baptized, level } from "./data";
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from "../context/AuthContext";
 
 const UserDetails = () => {
-  const { user, loading, error, updateUserDetails, isAuthenticated } = useAuth(); // Destructure states and functions from useAuth
+  const { user, loading, error, updateUserDetails, isAuthenticated, clearMessages } =
+    useAuth(); // Destructure states and functions from useAuth
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -21,30 +26,11 @@ const UserDetails = () => {
   });
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-  const [redirectTimeout, setRedirectTimeout] = useState(null);
 
   useEffect(() => {
-    console.log("isAuthenticated: ", user, isAuthenticated);
-
     if (!user || !isAuthenticated) {
-      // Set a timeout to redirect after 3 seconds
-      const timer = setTimeout(() => {
-        if (!isAuthenticated) {
-          navigate("/log-in");
-        }
-      }, 2000); // Delay of 3 seconds
-
-      // Store the timeout ID to clear it later if needed
-      setRedirectTimeout(timer);
-
-      // Cleanup function to clear the timer if the component unmounts
-      return () => clearTimeout(timer);
+      navigate("/log-in");
     } else if (user) {
-      // Clear the redirect timeout if the user is authenticated
-      if (redirectTimeout) {
-        clearTimeout(redirectTimeout);
-        setRedirectTimeout(null); // Reset the timeout state
-      }
 
       // Populate form fields with user data
       setFormData({
@@ -75,6 +61,7 @@ const UserDetails = () => {
     updateUserDetails(formData)
       .then(() => {
         setMessage("Your details have been updated successfully.");
+        clearMessages();
       })
       .catch((err) => {
         console.error("Update details error:", err);
@@ -201,7 +188,9 @@ const UserDetails = () => {
               placeholder="..."
               name="birthday"
               value={formData.birthday}
-              onChange={(e) => setFormData({ ...formData, birthday: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, birthday: e.target.value })
+              }
             />
 
             <div className="pt-4">

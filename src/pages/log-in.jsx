@@ -15,7 +15,7 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, loading, error, success } = useAuth(); // destructure the values from the custom useAuth hook
+  const { login, loading, error, success, clearMessages } = useAuth(); // destructure the values from the custom useAuth hook
 
   useEffect(() => {
     if (location.pathname === "/sign-up") {
@@ -42,6 +42,7 @@ const LogIn = () => {
         // Redirect to the profile page after a successful login
         setTimeout(() => {
           navigate("/profile");
+          clearMessages();
         }, 2000);
       })
       .catch((err) => {
@@ -115,7 +116,7 @@ const LogIn = () => {
 
             <div className="flex justify-end">
               <Link
-                to="/reset-your-password"
+                to="/forgot-password"
                 className="text-sm font-medium text-purple-600 hover:text-purple-800"
               >
                 Forgot Password?

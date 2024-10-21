@@ -10,7 +10,7 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const { resetPassword, loading, error, success } = useAuth(); // Destructure resetPassword and states from useAuth
+  const { resetPassword, loading, error, success, clearMessages } = useAuth(); // Destructure resetPassword and states from useAuth
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const ResetPassword = () => {
     resetPassword(currentPassword, newPassword)
       .then(() => {
         // The success handling is managed by useAuth hook
+        clearMessages();
       })
       .catch((err) => {
         console.error("Reset password error:", err);

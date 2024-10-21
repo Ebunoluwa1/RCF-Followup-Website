@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext';
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const { forgotPassword, loading, error, success } = useAuth(); // Destructure forgotPassword and states from useAuth
+  const { forgotPassword, loading, error, success, clearMessages } = useAuth(); // Destructure forgotPassword and states from useAuth
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +26,7 @@ const ForgotPassword = () => {
     forgotPassword(email)
       .then(() => {
         // The success handling is managed by useAuth hook
+        clearMessages();
       })
       .catch((err) => {
         console.error("Forgot password error:", err);
