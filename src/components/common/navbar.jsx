@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Button, ButtonLinks } from "./button";
 import { rcfLogo } from "../../assets";
 import { useLocation } from "react-router-dom";
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from "../../context/AuthContext";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -106,11 +106,23 @@ export default function Navbar() {
               </Link>
             ))}
             {isAuthenticated ? (
-              <Button size="sm" className="w-full mt-2" onClick={logout}>
+              <Button
+                size="sm"
+                className="w-full mt-2"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                  logout();
+                }}
+              >
                 Log out
               </Button>
             ) : (
-              <ButtonLinks href="log-in" size="sm" className="w-full mt-2">
+              <ButtonLinks
+                href="log-in"
+                size="sm"
+                className="w-full mt-2"
+                onClick={() => setIsOpen(!isOpen)}
+              >
                 Sign In
               </ButtonLinks>
             )}

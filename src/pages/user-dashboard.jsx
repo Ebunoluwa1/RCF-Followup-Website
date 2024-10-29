@@ -17,6 +17,9 @@ import {
   RadialBar,
 } from "recharts";
 import { community, personCheck } from "../assets";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useEffect } from "react";
 
 const lineChartData = [
   { name: "Mon", firstTimers: 100, soulsWon: 120 },
@@ -38,6 +41,18 @@ const totalSoulWonData = [{ name: "Progress", value: 74000, fill: "#8884d8" }];
 const COLORS = ["#8884d8", "#FF8042"];
 
 export default function Dashboard() {
+  const { user, isAuthenticated, clearMessages } = useAuth(); // Destructure states and functions from useAuth
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    clearMessages();
+  }, []);
+
+  useEffect(() => {
+    if (!user || !isAuthenticated) {
+      navigate("/log-in");
+    }
+  }, [user, isAuthenticated, navigate]);
   return (
     <div className="p-4 space-y-4 mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 md:py-12 max-w-7xl">
       <h1 className="text-2xl font-bold">Dashboard</h1>

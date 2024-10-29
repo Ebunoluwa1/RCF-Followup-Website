@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { rcfLogo } from "../assets";
 import { ButtonLinks } from "../components/common";
-import { InputComponent, PasswordInput } from "../components/common/input";
-import useAuth from "../hooks/useAuth"; // Import the custom useAuth hook
+import { PasswordInput } from "../components/common/input";
+import { useAuth } from "../context/AuthContext";
 
 const ResetPassword = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [err, setErr] = useState(null);
   const { resetPassword, loading, error, success, clearMessages } = useAuth(); // Destructure resetPassword and states from useAuth
   const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
+  let [token] = useState(searchParams.get("token"));
 
   useEffect(() => {
+    console.log(token);
+    console.log(searchParams);
     clearMessages();
-  },[])
+  }, []);
 
   useEffect(() => {
     if (success) {
@@ -30,20 +34,29 @@ const ResetPassword = () => {
   const handleResetPassword = (e) => {
     e.preventDefault();
     setMessage(null); // Clear previous messages
+    setErr(null); //
+
+    if (!token) {
+      setErr(
+        "Error invalid token! Please initiate a new reset password request!"
+      );
+      return;
+    }
 
     // Check if the new password matches the confirmation
     if (newPassword !== confirmPassword) {
-      setMessage("New password and confirmation do not match.");
+      setErr("New password and confirmation do not match.");
       return;
     }
 
     // Call the resetPassword function from useAuth
-    resetPassword(currentPassword, newPassword)
+    resetPassword(newPassword, token)
       .then(() => {
         // The success handling is managed by useAuth hook
       })
       .catch((err) => {
         console.error("Reset password error:", err);
+        setErr(`Reset password error: ${err}`);
       });
   };
 
@@ -64,13 +77,6 @@ const ResetPassword = () => {
 
         {/* Form */}
         <div className="flex flex-col justify-center gap-8 my-8">
-          <InputComponent
-            label="Current Password"
-            labelClassName="text-[#757575] mb-4 px-3 block"
-            placeholder="*******"
-            type="password"
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
           <PasswordInput
             label="New Password"
             labelClassName="text-[#757575] mb-4 px-3 block"
@@ -93,13 +99,14 @@ const ResetPassword = () => {
               disabled={loading}
               className={loading ? "opacity-70" : ""}
             >
-              {loading ? "Updating..." : "Update Password"}
+              {loading ? "Reseting..." : "Reset Password"}
             </ButtonLinks>
           </div>
 
           {/* Display success or error messages */}
           {message && <p className="text-green-600">{message}</p>}
           {error && <p className="text-red-600">Error: {error}</p>}
+          {err && <p className="text-red-600">Error: {err}</p>}
         </div>
       </div>
     </div>
