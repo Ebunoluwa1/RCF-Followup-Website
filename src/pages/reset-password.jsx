@@ -3,7 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { rcfLogo } from "../assets";
 import { ButtonLinks } from "../components/common";
 import { PasswordInput } from "../components/common/input";
-import useAuth from "../hooks/useAuth"; // Import the custom useAuth hook
+import { useAuth } from "../context/AuthContext";
 
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -13,15 +13,13 @@ const ResetPassword = () => {
   const { resetPassword, loading, error, success, clearMessages } = useAuth(); // Destructure resetPassword and states from useAuth
   const navigate = useNavigate();
   let [searchParams] = useSearchParams();
-  let [token] = useState(
-    searchParams.get("token")
-  );
+  let [token] = useState(searchParams.get("token"));
 
   useEffect(() => {
     console.log(token);
     console.log(searchParams);
     clearMessages();
-  },[])
+  }, []);
 
   useEffect(() => {
     if (success) {
@@ -38,9 +36,11 @@ const ResetPassword = () => {
     setMessage(null); // Clear previous messages
     setErr(null); //
 
-    if(!token) {
-      setErr("Error invalid token! Please initiate a new reset password request!");
-      return
+    if (!token) {
+      setErr(
+        "Error invalid token! Please initiate a new reset password request!"
+      );
+      return;
     }
 
     // Check if the new password matches the confirmation
