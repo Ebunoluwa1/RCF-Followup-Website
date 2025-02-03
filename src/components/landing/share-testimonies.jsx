@@ -1,7 +1,7 @@
 function Testimonial({ name, content }) {
   return (
     <div className="w-full bg-white border shadow-md rounded-xl p-6 ">
-      <h3 className="font-medium text-lg lg:text-xl mb-2">{name}</h3>
+      <h3 className="font-medium text-right  text-lg lg:text-xl mb-2">{name}</h3>
       <p className="text-sm xl:text-lg font-light text-gray-600">{content}</p>
     </div>
   );
