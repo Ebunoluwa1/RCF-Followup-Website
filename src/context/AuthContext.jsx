@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import {jwtDecode} from 'jwt-decode';
 
 const api_base_uri = "https://rcfbackend.onrender.com";
 
@@ -18,6 +19,16 @@ export const AuthProvider = ({ children }) => {
   // Function to check if user is authenticated
   const checkAuth = useCallback(() => {
     const token = Cookies.get('auth_token');
+
+    if (token) {
+  const decoded = jwtDecode(token);
+  const now = Date.now() / 1000; // Current time in seconds
+  if (decoded.exp < now) {
+    console.log('Token has expired');
+    // Handle token refresh or logout here
+   
+  }
+}
     if (!token) {
       setUser(null);
       setLoading(false);
@@ -25,7 +36,10 @@ export const AuthProvider = ({ children }) => {
     }
     // Verify the token and fetch user details
     verifyTokenAndFetchUser(token);
+    
+       console.log(localStorage.getItem("authToken"));
   }, []);
+  
 
   // Verify the token and fetch user details
   const verifyTokenAndFetchUser = async (token) => {
@@ -80,12 +94,18 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       setSuccess(null);
+       console.log(localStorage.getItem("authToken"));
       const response = await axios.post(`${api_base_uri}/auth/login`, {
         email,
         password,
-      });
+      },{
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
       // Set the token and fetch user details
       Cookies.set('auth_token', response.data.data.token, { expires: 7 });
+      
       await verifyTokenAndFetchUser(response.data.data.token);
       setSuccess('Login successful.');
     } catch (error) {
