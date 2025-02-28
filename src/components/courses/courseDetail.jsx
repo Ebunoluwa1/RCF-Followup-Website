@@ -38,8 +38,8 @@ function LessonCard({ id, title, lessonNumber }) {
 export default function CourseDetail() {
   //for coursecategories and each courses
   const { courseId } =useParams()
-    const {fetchLessons, courses, loadingState, lessons, error} = useCourse()
-    const [currentCourse, setCurrentCourse] =useState('');
+    const {fetchLessons, fetchCourses, courses, loadingState, lessons, error} = useCourse()
+    const [currentCourse, setCurrentCourse] =useState(null);
 
    console.log("Courses:", courses);
 console.log("CourseId:", courseId);
@@ -48,32 +48,48 @@ console.log("Lessons:", lessons);
 console.log("LoadingState:", loadingState);
 console.log("Error:", error);
 
+// useEffect(() => {
+//   if (currentCourse && currentCourse._id && lessons.length === 0) {
+//     console.log("Fetching lessons for:", currentCourse._id);
+//     fetchLessons(currentCourse._id);
+//   }
+// }, [currentCourse]);
 
-    useEffect(() => {
-        if (courseId) {
-    fetchLessons(courseId); // Fetch lessons immediately
+// useEffect(() => {
+//  if (courseId) fetchLessons(courseId);
+
+// const course = courses.find((course) => String(course._id) === courseId);
+//     if (course  && course._id !== currentCourse?._id ) {
+//       console.log("Setting Current Course:", course);
+//       setCurrentCourse(course);
+//        fetchLessons(course._id); 
+//     }
+    
+    
+   
+ 
+// },[courseId, courses])
+
+useEffect(() => {
+  if (courses.length === 0) {
+    console.log("Fetching courses...");
+    fetchCourses(); // Ensure courses are loaded first
   }
+}, [courses, fetchCourses]);
 
-    },[courseId])
+ useEffect(() => {
+      if (!courseId || courses.length === 0) return; // Ensure courses exist before proceeding
 
-  useEffect(() => {
-  
-     if (courseId && courses.length > 0 ) {
-     const course = courses.find((course) => String(course._id) === courseId);
-      console.log("Found :", course);//gives access to module one due to the string
-// fetchLessons(course._id);
+    const course = courses.find((course) => String(course._id) === courseId);
+   
 
-      if (course) {
-        setCurrentCourse(course);
-         if (lessons.length === 0) {
-        fetchLessons(course._id); // Fetch again to ensure lessons load
-      }
-         
-      }
-     
-  }
+    if (course && course._id !== currentCourse?._id) {
+      console.log("Setting Current Course:", course);
+      setCurrentCourse(course);
+      fetchLessons(course._id); // Fetch lessons only when course is found
+    }
+  }, [courseId, courses, fetchLessons]);
 
-}, [ courseId, courses, lessons]);
 
   //indexJs  (showing the course) -> CourseDetail (shows the lesson details in the course) -> LessonDetail (clicking on a module shows the complete lesson with the assessment)
  
@@ -84,14 +100,14 @@ console.log("Error:", error);
   //   return <div>Loading...</div>;
   // }
   return (
-    <div key={currentCourse._id} className="max-w-7xl mx-auto px-4 pt-5 md:pt-16 pb-20">
-         {currentCourse ? (
+    <div key={currentCourse?._id} className="max-w-7xl mx-auto px-4 pt-5 md:pt-16 pb-20">
+         {!currentCourse ? (
       <div className="text-center text-purple-500">Loading course details...</div>
-    ) :
-    (  <>
+    ) : (
+    <>
       <h2 className="text-3xl md:text-4xl font-medium text-purple-800 tracking-wider mb-12 text-center">
        
-        {currentCourse.title}
+        {currentCourse?.title ? currentCourse.title : "Loading course title..."}
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
         {loadingState.lessons ? (
@@ -113,8 +129,8 @@ console.log("Error:", error);
 }
       </div>
       </>
-    )
-}
+     )
+ } 
 
     </div>
   );

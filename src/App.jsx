@@ -32,16 +32,76 @@ function App() {
         <Route path="/reset-your-password" element={<ResetPassword />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/profile" element={<UserDetails />} />
-        <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/attendance" element={<AttendancePage />} />
-        <Route path="/take-course/:courseId" element={<CourseDetail />} />
-        
+         <Route path="/resources" element={<Resources />} />
+        <Route path="/dashboard" element={<UserDashboard />} />
+       
+       
+        {/* <Route path="/attendance" element={<AttendancePage />} />
+         <Route path="/courses" element={<CoursesPage />} />
+         <Route path="/take-course/:courseId" element={<CourseDetail />} />
+        <Route path="/result-corrections" element={<ResultCorrections />} />
         <Route path="/take-lesson/:lessonId" element={<LessonDetail />} />
         <Route path="/take-test" element={<TakeTest />} />
-        <Route path="/test-result" element={<TestResult />} />
-        <Route path="/result-corrections" element={<ResultCorrections />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/test-result" element={<TestResult />} /> */}
+
+       
+       {/* Wrap course-related pages in CourseProvider */}
+        <Route
+          path="/courses/*"
+          element={
+            <CourseProvider>
+              <CoursesPage />
+            </CourseProvider>
+          }
+        />
+        <Route
+          path="/attendance"
+          element={
+            <CourseProvider>
+              <AttendancePage />
+            </CourseProvider>
+          }
+        />
+        <Route
+          path="/take-course/:courseId"
+          element={
+            <CourseProvider>
+              <CourseDetail />
+            </CourseProvider>
+          }
+        />
+        <Route
+          path="/take-lesson/:lessonId"
+          element={
+            <CourseProvider>
+              <LessonDetail />
+            </CourseProvider>
+          }
+        />
+        <Route
+          path="/take-test"
+          element={
+            <CourseProvider>
+              <TakeTest />
+            </CourseProvider>
+          }
+        />
+        <Route
+          path="/test-result"
+          element={
+            <CourseProvider>
+              <TestResult />
+            </CourseProvider>
+          }
+        />
+        <Route
+          path="/result-corrections"
+          element={
+            <CourseProvider>
+              <ResultCorrections />
+            </CourseProvider>
+          }
+        />
 
         {/* Catch-all route for unknown paths */}
         <Route path="*" element={<NotFound />} />
