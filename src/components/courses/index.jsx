@@ -31,11 +31,21 @@ function CourseCard({ id, title}) {
 }
 
 export default function NewConvertCourses() {
+    const navigate = useNavigate();
+
   //for coursecategories and each courses
-    const {courses, error, loadingState} = useCourse()
-     if (error) {
-    return <div className="text-red-500">Error: {error}</div>;
+    const {courses, error, loadingState} = useCourse();
+
+     if (!courses || courses.length === 0) {
+    return (
+      <div className="text-center text-gray-500 m-2">
+        <p>You need to <span onClick={() => navigate("/log-in")} className="font-semibold p-2  text-purple-600 cursor-pointer">sign in</span> to view available courses.</p>
+      </div>
+    );
   }
+     if (error) {
+     return <div className="text-red-500">Error: {error}</div>;
+        }
   return (
     <div className="max-w-7xl mx-auto px-4 pt-5 md:pt-16 pb-20">
       <h2 className="text-3xl md:text-4xl font-medium text-purple-800 tracking-wider mb-12 text-center">
